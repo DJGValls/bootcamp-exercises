@@ -1,4 +1,6 @@
-package com.ironhack.bootcamp.exercises.s3;
+package com.ironhack.bootcamp.exercises.s3.lab106;
+
+import com.ironhack.bootcamp.exercises.s2.lab104.Lab104Instructions;
 
 /**
  * Instrucciones
@@ -18,4 +20,8 @@ package com.ironhack.bootcamp.exercises.s3;
  * Escriba un programa que cree 10 Empleados e imprima todas las propiedades en un archivo llamado employees.txt.
  */
 public class Lab106Instructions {
+    public static void main(String[] args) {
+
+    }
+
 }
