@@ -31,4 +31,6 @@ public interface GradeRepository extends CrudRepository<Grade, Integer> {
     @Query("delete from Grade g where g.sectionId=:sectionId and score>=:score ")
     void deleteAllBySectionIdAndScoreGreaterThan(@Param("sectionId") String sectionId, @Param("score") Integer score);
 
+
+
 }
