@@ -1,6 +1,8 @@
 package com.ironhack.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,16 +11,71 @@ import javax.persistence.*;
 public class Section { // --> section
 
     @Id
-    String id;
-    String courseCode; // --> course_code
-    Integer roomNumber; // --> room_number
-    Integer enrolled;
+    private String id;
+
+    private Integer roomNumber; // --> room_number
+    private Integer enrolled;
     @Column(name = "instructor")
-    String instructor; // --> instructor
+    private String instructor; // --> instructor
 
-    Integer capacity;
+    private Integer capacity;
 
-    public Section() {}
+//    @JsonIgnore // if we want to fully hide this field
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_code")
+    private Course course;
+
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
+    public String getId() {
+        return id;
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public Integer getEnrolled() {
+        return enrolled;
+    }
+
+    public void setEnrolled(Integer enrolled) {
+        this.enrolled = enrolled;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Section() {
+    }
 
     public Section(int capacity) {
         this.capacity = capacity;

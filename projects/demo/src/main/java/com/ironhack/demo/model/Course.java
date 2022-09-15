@@ -1,18 +1,42 @@
 package com.ironhack.demo.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
+// This is to include the course id in the section list when marshalling to a json object
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property="courseCode"
+)
 @Entity
 @Table(name = "course")
 public class Course {
 
     @Id
-    @GeneratedValue
+    @NotNull
+    @NotEmpty
     String courseCode;
 
     @Column(name = "course_name")
+    @NotNull
     String courseName;
 
+    @OneToMany(mappedBy = "course")
+    List<Section> sections;
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
 
     Integer hours;
 
